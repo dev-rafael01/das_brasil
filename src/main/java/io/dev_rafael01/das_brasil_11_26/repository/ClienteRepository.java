@@ -1,6 +1,6 @@
 package io.dev_rafael01.das_brasil_11_26.repository;
 
-import io.dev_rafael01.das_brasil_11_26.entity.ClienteEntity;
+import io.dev_rafael01.das_brasil_11_26.infraestrutura.entity.ClienteEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
