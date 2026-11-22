@@ -1,25 +1,22 @@
-package io.dev_rafael01.das_brasil_11_26.entity;
+package io.dev_rafael01.das_brasil_11_26.infraestrutura.entity;
 
 import io.dev_rafael01.das_brasil_11_26.enum1.PerfilUsuario;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
+    @Column(name = "usuario_id")
     private Long usuario_id;
 
     @Column(name = "nome_usuario", nullable = false, length = 100, unique = true)
@@ -34,10 +31,16 @@ public class UsuarioEntity {
     @Column(name = "telefone", length = 15)
     private String telefone;
 
-    @Column(name = "senha_usuario", length = 255)
-    private String password;
+    @Column(name = "senha", length = 255)
+    private String senha;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "perfil_usuario", nullable = false)
     private PerfilUsuario perfil;
+
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<ClienteEntity> clientes;
+
+
 }
