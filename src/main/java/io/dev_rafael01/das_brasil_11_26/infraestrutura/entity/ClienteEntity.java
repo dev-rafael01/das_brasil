@@ -26,6 +26,7 @@ public class ClienteEntity {
     @Column(name = "sistema_primeiro")
     private String sistemaPrimeiro;
 
+
     @Column(name = "sistema_secundario")
     private String sistemaSecundario;
 
@@ -35,8 +36,4 @@ public class ClienteEntity {
     @Column(name = "config_cabecote")
     private String configCabecote;
 
-    // O relacionamento é mapeado pelo campo "clientes" em UsuarioEntity.
-    @ManyToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
-    @Builder.Default
-    private Set<UsuarioEntity> usuarios = new HashSet<>();
 }

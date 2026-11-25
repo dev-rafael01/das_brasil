@@ -18,6 +18,4 @@ public class ClienteDTO {
     private String sistemaTerciario;
     private String configCabecote;
 
-    @Builder.Default
-    private Set<Long> usuarioIds = Set.of();
 }

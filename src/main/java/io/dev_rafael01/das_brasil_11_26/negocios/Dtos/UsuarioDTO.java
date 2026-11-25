@@ -14,11 +14,10 @@ public class UsuarioDTO {
 
     private Long id;
     private String nome;
+    private String senha;
     private String email;
     private String cargo;
     private String telefone;
     private PerfilUsuario perfil;
 
-    @Builder.Default
-    private Set<Long> clienteIds = Set.of();
 }

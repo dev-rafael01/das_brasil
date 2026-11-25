@@ -24,6 +24,9 @@ public class UsuarioEntity {
     @Column(name = "nome_usuario", nullable = false, length = 100, unique = true)
     private String nome;
 
+    @Column(name = "senha", nullable = false, length = 255)
+    private String senha;
+
     @Column(name = "email", nullable = false, length = 60, unique = true)
     private String email;
 
@@ -33,20 +36,9 @@ public class UsuarioEntity {
     @Column(name = "telefone", length = 15)
     private String telefone;
 
-    @Column(name = "senha", nullable = false, length = 255)
-    private String senha;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "perfil_usuario", nullable = false)
     private PerfilUsuario perfil;
 
-    // UsuarioEntity é o lado que controla a tabela de associação.
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "usuarios_clientes",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "cliente_id")
-    )
-    @Builder.Default
-    private Set<ClienteEntity> clientes = new HashSet<>();
+
 }
