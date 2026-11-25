@@ -3,39 +3,40 @@ package io.dev_rafael01.das_brasil_11_26.infraestrutura.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "cliente")
+@Table(name = "clientes")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class ClienteEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id")
-    private Long cliente_id;
+    private Long id;
 
     @Column(name = "nome_cliente", nullable = false, length = 30)
     private String nome;
 
-    @Column(name = "sistemaPrimeiro")
-    private String sistemaPrimeira;
+    @Column(name = "sistema_primeiro")
+    private String sistemaPrimeiro;
 
-    @Column(name = "sistemaSegundaria")
-    private String sistemaSegundario;
+    @Column(name = "sistema_secundario")
+    private String sistemaSecundario;
 
-    @Column(name = "sistemaTerciario")
+    @Column(name = "sistema_terciario")
     private String sistemaTerciario;
 
-    @Column(name = "confiCabecote")
-    private String confiCabecote;
+    @Column(name = "config_cabecote")
+    private String configCabecote;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private UsuarioEntity usuario;
-
-
-
-
+    // O relacionamento é mapeado pelo campo "clientes" em UsuarioEntity.
+    @ManyToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<UsuarioEntity> usuarios = new HashSet<>();
 }
